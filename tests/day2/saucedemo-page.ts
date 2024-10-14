@@ -32,6 +32,30 @@ export class SaucedemoPage {
       async clickLogin(){
         await this.login.click();
     }
+    async addItemToCart(itemLocator) {
+        await this.page.locator(itemLocator).click();
+    }
 
+    async proceedToCheckout() {
+        await this.page.locator('[data-test="shopping-cart-link"]').click();
+        await this.page.locator('[data-test="checkout"]').click();
+    }
 
+    async fillCheckoutInformation(firstName, lastName, postalCode) {
+        await this.page.locator('[data-test="firstName"]').fill(firstName);
+        await this.page.locator('[data-test="lastName"]').fill(lastName);
+        await this.page.locator('[data-test="postalCode"]').fill(postalCode);
+    }
+
+    async finishCheckout() {
+        await this.page.locator('[data-test="continue"]').click();
+        await this.page.locator('[data-test="finish"]').click();
+    }
+
+    async backToProducts() {
+        await this.page.locator('[data-test="back-to-products"]').click();
+    }
 }
+
+
+
