@@ -1,0 +1,38 @@
+{
+  "textBoxPage": {
+    "fullName": {
+      "placeholder": "Full Name"
+    },
+    "email": {
+      "placeholder": "name@example.com"
+    },
+    "currentAddress": {
+      "placeholder": "Current Address"
+    },
+    "permanentAddress": {
+      "selector": "#permanentAddress"
+    },
+    "submitButton": {
+      "role": "button",
+      "name": "Submit"
+    }
+  },
+  "checkBoxPage": {
+    "toggleButton": {
+      "label": "Toggle"
+    }
+  },
+  "toggleClicks": {
+    "documentToggle": {
+      "label": "Toggle",
+      "text": "Documents"
+    },
+    "workspaceToggle": {
+      "label": "Toggle",
+      "text": "WorkSpace"
+    }
+  }
+}
+
+
+
