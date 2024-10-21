@@ -4,17 +4,15 @@ import { Page } from '@playwright/test';
 const locators = require('./locators.json');
 
 
-export class TextBoxPage {
+export class elemepntsPage {
     readonly page: Page;
     readonly locators: any;
     readonly checkBoxLocators: any;
     readonly toggleClicks: any;
     readonly documentToggle: any;
-    // readonly locators = locators.textBoxPage; // Locators for text box page
-    // readonly checkBoxLocators = locators.checkBoxPage; // Locators for checkbox page
-    // readonly toggleClicks = locators.toggleClicks;
-    // readonly workspaceToggle = locators.workspaceToggle;
-    // //readonly documentToggle = locators.toggleClicks.documentToggle;
+    readonly impressive: any;
+    readonly doubleClickButton: any;
+  
   
     constructor(page: Page) {
       this.page = page;
@@ -22,6 +20,9 @@ export class TextBoxPage {
       this.checkBoxLocators = locators.checkBoxPage;
       this.toggleClicks = locators.toggleClicks;
       this.documentToggle = locators.toggleClicks.documentToggle;
+      this.impressive = page.getByText('Impressive');
+      this.doubleClickButton = page.getByRole('button', { name: 'Double Click Me' });
+      
     }
 
   async navigateToTextBox() {
@@ -33,6 +34,17 @@ export class TextBoxPage {
   await this.page.goto('https://demoqa.com/');
   await this.page.locator('svg').first().click();
   await this.page.getByText('Check Box').click();
+}
+async navigateToRadioButton() {
+  await this.page.goto('https://demoqa.com/');
+  await this.page.locator('svg').first().click();
+  await this.page.getByText('Radio Button').click();
+}
+  async navigateToButtons(){
+    await this.page.goto('https://demoqa.com/');
+    await this.page.locator('path').first().click();
+    await this.page.locator('li').filter({ hasText: 'Buttons' }).click();
+   
 }
   async fillForm(fullName: string, email: string, currentAddress: string, permanentAddress: string) {
     await this.page.getByPlaceholder(this.locators.fullName.placeholder).click();
@@ -52,10 +64,10 @@ export class TextBoxPage {
   }
   async togglesClicks (){
   //   await this.page.getByLabel(this.checkBoxLocators.toggleButton.label).click();
-  //  // await this.page.locator('li').filter({ hasText: this.toggleClicks.documentToggle.text }).getByLabel(this.toggleClicks.documentToggle.label).first().click();
-  //   await this.page.locator('li').filter({ hasText: /^WorkSpace$/ }).getByLabel('Toggle').click();
-  //   await this.page.locator('label').filter({ hasText: 'WorkSpace' }).getByRole('img').first().click();
-  //   await this.page.locator('li').filter({ hasText: /^WorkSpace$/ }).getByLabel('Toggle').click();
+  // await this.page.locator('li').filter({ hasText: this.toggleClicks.documentToggle.text }).getByLabel(this.toggleClicks.documentToggle.label).first().click();
+  // //   await this.page.locator('li').filter({ hasText: /^WorkSpace$/ }).getByLabel('Toggle').click();
+  // //   await this.page.locator('label').filter({ hasText: 'WorkSpace' }).getByRole('img').first().click();
+  // //   await this.page.locator('li').filter({ hasText: /^WorkSpace$/ }).getByLabel('Toggle').click();
     
     await this.page.getByLabel('Toggle').click();
     await this.page.locator('li').filter({ hasText: /^Documents$/ }).getByLabel('Toggle').click();
@@ -63,4 +75,10 @@ export class TextBoxPage {
     await this.page.locator('li').filter({ hasText: /^WorkSpace$/ }).getByLabel('Toggle').click();
         
   }
+ async impressiveClick(){
+   await this.impressive.click();
+ }
+ async buttonsElements(){
+  await this.doubleClickButton.dblclick();
+}
 }
