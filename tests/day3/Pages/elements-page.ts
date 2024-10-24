@@ -25,27 +25,59 @@ export class elemepntsPage {
       
     }
 
-  async navigateToTextBox() {
-    await this.page.goto('https://demoqa.com/');
-    await this.page.locator('svg').first().click();
-    await this.page.getByText('Text Box').click();
+    private async navigateToSection(sectionName: string) {
+      await this.page.goto('https://demoqa.com/');
+      await this.page.locator('svg').first().click();
+      await this.page.getByText(sectionName).click();
   }
+
+  async navigateToTextBox() {
+      await this.navigateToSection('Text Box');
+  }
+
   async navigateToCheckBox() {
-  await this.page.goto('https://demoqa.com/');
-  await this.page.locator('svg').first().click();
-  await this.page.getByText('Check Box').click();
-}
-async navigateToRadioButton() {
-  await this.page.goto('https://demoqa.com/');
-  await this.page.locator('svg').first().click();
-  await this.page.getByText('Radio Button').click();
-}
-  async navigateToButtons(){
-    await this.page.goto('https://demoqa.com/');
-    await this.page.locator('path').first().click();
-    await this.page.locator('li').filter({ hasText: 'Buttons' }).click();
+      await this.navigateToSection('Check Box');
+  }
+
+  async navigateToRadioButton() {
+      await this.navigateToSection('Radio Button');
+  }
+
+  async navigateToButtons() {
+      await this.page.goto('https://demoqa.com/');
+      await this.page.locator('path').first().click();
+      await this.page.locator('li').filter({ hasText: 'Buttons' }).click();
+  }
+
+  async getImpressiveText() {
+      return this.page.getByText('Impressive');
+  }
+
+  async getDoubleClickButton() {
+      return this.page.getByRole('button', { name: 'Double Click Me' });
+  }
+
+//   async navigateToTextBox() {
+//     await this.page.goto('https://demoqa.com/');
+//     await this.page.locator('svg').first().click();
+//     await this.page.getByText('Text Box').click();
+//   }
+//   async navigateToCheckBox() {
+//   await this.page.goto('https://demoqa.com/');
+//   await this.page.locator('svg').first().click();
+//   await this.page.getByText('Check Box').click();
+// }
+// async navigateToRadioButton() {
+//   await this.page.goto('https://demoqa.com/');
+//   await this.page.locator('svg').first().click();
+//   await this.page.getByText('Radio Button').click();
+// }
+//   async navigateToButtons(){
+//     await this.page.goto('https://demoqa.com/');
+//     await this.page.locator('path').first().click();
+//     await this.page.locator('li').filter({ hasText: 'Buttons' }).click();
    
-}
+
   async fillForm(fullName: string, email: string, currentAddress: string, permanentAddress: string) {
     await this.page.getByPlaceholder(this.locators.fullName.placeholder).click();
     await this.page.getByPlaceholder(this.locators.fullName.placeholder).fill(fullName);

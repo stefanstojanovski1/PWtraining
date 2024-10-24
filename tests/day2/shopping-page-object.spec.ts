@@ -16,7 +16,7 @@ import { SaucedemoPage } from './saucedemo-page';
     //add the item to the cart and finich the shopping
     await saucedemoaucedemoPage.addItemToCart('[data-test="add-to-cart-sauce-labs-backpack"]');
     await saucedemoaucedemoPage.addItemToCart('[data-test="add-to-cart-sauce-labs-bolt-t-shirt"]');
-    await saucedemoaucedemoPage.proceedToCheckout();
+    await saucedemoaucedemoPage.proceedToCheckout('Stefan', 'Stojanovski', '7777');
     await saucedemoaucedemoPage.fillCheckoutInformation('Stefan', 'Stojanovski', '7777');
     await saucedemoaucedemoPage.finishCheckout();
     await saucedemoaucedemoPage.backToProducts();

@@ -1,6 +1,6 @@
 // textBoxTest.spec.ts
 import { test, expect } from '@playwright/test';
-import { elemepntsPage } from './demoqa-page';
+import { elemepntsPage } from '../Pages/elements-page';
 
 test.describe("Elements Tests", () => {
   test('Test Text Box', async ({ page }) => {
@@ -24,7 +24,7 @@ test('Test Radio button', async ({ page }) => {
   await elements.impressiveClick();
 });
 
-test('Test Buttons', async ({ page }) => {
+test('Test Buttons @smoke', async ({ page }) => {
   const elements = new elemepntsPage(page);
   await elements.navigateToButtons();
   await elements.buttonsElements();
