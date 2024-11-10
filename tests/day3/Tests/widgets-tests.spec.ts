@@ -6,6 +6,7 @@ test('Widget test', async ({ page }) => {
 const form = new WidgetsPage(page);
 
   await form.navigateToForm();
+  await form.navigateToAutoComplete();
   await form.fillMultipleColrs('Black');
   await form.fillSingleColor();
  // await form.fillMultipleColrs();
@@ -13,6 +14,16 @@ const form = new WidgetsPage(page);
   await form.checkIfColorCorrect();
   await expect(page.locator('#autoCompleteSingleContainer')).toContainText('Red');
 });
+
+test('Tabs test', async ({ page }) => {
+
+  const form = new WidgetsPage(page);
+  
+    await form.navigateToForm();
+    await form.navigateToAutoTabs();
+  
+  });
+    
   
   
 

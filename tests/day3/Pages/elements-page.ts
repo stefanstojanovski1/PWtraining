@@ -12,6 +12,10 @@ export class elemepntsPage {
     readonly documentToggle: any;
     readonly impressive: any;
     readonly doubleClickButton: any;
+    readonly webTableNavigate: any;
+    readonly salaryClick: any;
+    readonly salaryButton: any;
+    readonly salaryGrid: any;
   
   
     constructor(page: Page) {
@@ -22,6 +26,11 @@ export class elemepntsPage {
       this.documentToggle = locators.toggleClicks.documentToggle;
       this.impressive = page.getByText('Impressive');
       this.doubleClickButton = page.getByRole('button', { name: 'Double Click Me' });
+      this.webTableNavigate = page.locator('#edit-record-1 path');
+      this.salaryClick = page.getByPlaceholder('Salary');
+      this.salaryButton = page.getByRole('button', { name: 'Submit' });
+    
+      
       
     }
 
@@ -42,6 +51,10 @@ export class elemepntsPage {
   async navigateToRadioButton() {
       await this.navigateToSection('Radio Button');
   }
+  
+  async navigateToRadioWebTables() {
+    await this.navigateToSection('Web Tables');
+}
 
   async navigateToButtons() {
       await this.page.goto('https://demoqa.com/');
@@ -57,6 +70,30 @@ export class elemepntsPage {
       return this.page.getByRole('button', { name: 'Double Click Me' });
   }
 
+  // // async navigateToLinks(){
+  // //   await this.page.goto('https://demoqa.com/');
+  // //   await this.page.locator('svg').first().click();
+  // //   await this.page.getByText('Links', { exact: true }).click();
+    
+  // }
+  async navUrl() {
+    await this.page.goto('https://demoqa.com/');
+}
+
+async clickSvg() {
+    await this.page.locator('svg').first().click();
+}
+
+async clickLinks() {
+    await this.page.getByText('Links', { exact: true }).click();
+}
+  async clickHomeAndWaitForPopup(){
+    const page1Promise = this.page.waitForEvent('popup');
+  await this.page.getByRole('link', { name: 'Home', exact: true }).click();
+  const page1 = await page1Promise;
+  return page1;
+  
+  }
 //   async navigateToTextBox() {
 //     await this.page.goto('https://demoqa.com/');
 //     await this.page.locator('svg').first().click();
@@ -112,5 +149,17 @@ export class elemepntsPage {
  }
  async buttonsElements(){
   await this.doubleClickButton.dblclick();
+} 
+private getSalaryGrid(salary: string) {
+  return this.page.getByRole('gridcell', { name: salary });
+}
+async webTablesFill(salary: string){
+await this.webTableNavigate.click();
+await this.salaryClick.click();
+await this.salaryClick.fill(salary);
+await this.salaryButton.click();
+const salaryGrid = this.getSalaryGrid(salary);
+await salaryGrid.click();
+
 }
 }

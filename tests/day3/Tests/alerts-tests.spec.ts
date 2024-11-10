@@ -11,4 +11,12 @@ const form = new alertsPage(page);
   
 });
 
-     
+test('Test alert with click button', async ({ page }) => {
+  const form = new alertsPage(page);
+  await form.navigateToAlertWindows();
+  await form.alertsClick();
+  await form.alertButtonClick();
+
+  
+
+});

@@ -32,4 +32,28 @@ test('Test Buttons @smoke', async ({ page }) => {
 
 });
 
+
+test('Test Web tables', async ({ page }) => {
+  const elements = new elemepntsPage(page);
+  await elements.navigateToRadioWebTables();
+  await elements.webTablesFill('100000');
+  await expect(page.getByRole('grid')).toContainText('100000')
+
 });
+
+
+test('Test new tab', async ({ page }) => {
+ const elements = new elemepntsPage(page);
+ await elements.navUrl();
+ await elements.clickSvg();
+ await elements.clickLinks();
+  await elements.clickHomeAndWaitForPopup();
+  const page1 = await elements.clickHomeAndWaitForPopup(); 
+  await expect(page1).toHaveURL('https://demoqa.com/');
+
+
+
+});
+});
+
+
