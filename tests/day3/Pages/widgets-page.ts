@@ -11,6 +11,10 @@ export class WidgetsPage {
   readonly colorOptionRed: Locator;
   readonly tabsLocator: Locator;
   readonly paragraphLocator: Locator;
+  readonly selectMenuButton: Locator;
+  readonly withOptGroupDropdown: Locator;
+  readonly selectOneDropdown: Locator;
+  readonly selectMenuContainerDropdown: Locator;
 
   constructor(page: Page) {
     this.page = page;
@@ -23,7 +27,11 @@ export class WidgetsPage {
     
     this.tabsLocator = page.locator('li').filter({ hasText: 'Tabs' });
     this.paragraphLocator = page.getByRole('paragraph');
-    
+    this.selectMenuButton = page.getByText('Select Menu');
+    this.withOptGroupDropdown = page.locator('#withOptGroup svg');
+    this.selectOneDropdown = page.locator('#selectOne svg');
+    this.selectMenuContainerDropdown = page.locator('#selectMenuContainer svg').nth(2);
+
   
 
   }
@@ -34,6 +42,26 @@ export class WidgetsPage {
     await this.widgetsButton.click();
     
   }
+  async navigateToSelectMenu() {
+    await this.selectMenuButton.click();
+  }
+
+  async selectOptionFromOptGroup() {
+    await this.withOptGroupDropdown.click();
+    await this.page.getByText('Group 1, option 1', { exact: true }).click();
+  }
+
+  async selectOptionFromSelectOne() {
+    await this.selectOneDropdown.click();
+    await this.page.getByText('Dr.', { exact: true }).click();
+  }
+
+  async selectMultipleOptions() {
+    await this.selectMenuContainerDropdown.click();
+    await this.page.locator('#react-select-4-option-0').click();
+    await this.page.locator('#react-select-4-option-2').click();
+  }
+
   async navigateToAutoComplete(){
     await this.tabsLocator.click();
     await expect(this.page.getByRole('paragraph')).toContainText('Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.');

@@ -23,8 +23,18 @@ test('Tabs test', async ({ page }) => {
     await form.navigateToAutoTabs();
   
   });
+
+  test('Select menu test', async ({ page }) => {
+
+    const form = new WidgetsPage(page);
+    await form.navigateToForm();
+ 
+    await form.navigateToSelectMenu();
+    await form.selectOptionFromOptGroup();
+    await form.selectOptionFromSelectOne();
+    await form.selectMultipleOptions();
     
-  
+});
   
 
 
